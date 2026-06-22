@@ -1,5 +1,5 @@
-from estruturas.union_find import UnionFind
-from estruturas.grafo import GrafoAdjacencia
+from src.estruturas.union_find import UnionFind
+from src.estruturas.grafo import GrafoAdjacencia
 
 def executar_kruskal(grafo: GrafoAdjacencia, num_topicos: int) -> tuple[list[list[int]], list[tuple[float, int, int]]]:
     """
@@ -68,14 +68,15 @@ def executar_kruskal(grafo: GrafoAdjacencia, num_topicos: int) -> tuple[list[lis
         print("="*60 + "\n")
 
     # 3. Remover as arestas mais pesadas para formar os clusters
-    # Se queremos 'k' tópicos, precisamos cortar 'k-1' arestas da MST completa.
-    # Como a mst_completa foi montada baseada na lista ordenada, as últimas inseridas são as mais pesadas.
-    arestas_a_remover = num_topicos - 1
+    # Usamos o Union-Find da Pessoa 4 para ver quantos tópicos o grafo formou naturalmente
+    topicos_formados_naturalmente = uf.quantidade_de_topicos()
     
-    # Garante que não vamos cortar mais arestas do que temos
+    arestas_a_remover = num_topicos - topicos_formados_naturalmente
+    
     if arestas_a_remover > 0 and len(mst_completa) >= arestas_a_remover:
         mst_cortada = mst_completa[:-arestas_a_remover]
     else:
+        # O limite_distancia já separou os clusters de forma perfeita (ou além do necessário)
         mst_cortada = mst_completa
 
     # Para obtermos os tópicos resultantes finais após o corte,
