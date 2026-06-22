@@ -3,6 +3,7 @@ import os
 from src.estruturas.grafo import GrafoAdjacencia
 from src.processamento.pln import processar_textos
 from src.algoritimos.Kruskal import executar_kruskal
+from src.estruturas.tabela_hash import TabelaHash
 
 # 1. Pessoa 5 lê o JSON
 # 2. Pessoa 2 limpa os textos e calcula as distâncias
@@ -47,3 +48,21 @@ for i, topico in enumerate(topicos):
     # Ordenamos os IDs para facilitar a sua visualização e conferência
     print(f"IDs: {sorted(topico)}")
 print("="*60 + "\n")
+
+# 6. Integração da Tabela Hash (Busca O(1) exigida na tarefa da Pessoa 4)
+print("[4/4] Alimentando Tabela Hash para busca O(1)...")
+tabela_noticias = TabelaHash()
+for nt in noticias:
+    tabela_noticias.inserir(nt['titulo'], nt['id'])
+
+print("\n" + "="*60)
+print("🔍 TESTE DE BUSCA O(1) NA TABELA HASH")
+print("="*60)
+# Simulando um usuário buscando pelo título exato de uma notícia
+titulo_busca = "Mercado financeiro cai com decisão do banco sobre juros"
+id_encontrado = tabela_noticias.buscar(titulo_busca)
+
+if id_encontrado:
+    print(f"Sucesso! O título '{titulo_busca}' corresponde ao ID {id_encontrado}.")
+else:
+    print("Notícia não encontrada.")
