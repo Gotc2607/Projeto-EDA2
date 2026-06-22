@@ -12,7 +12,7 @@ def executar_kruskal(grafo: GrafoAdjacencia, num_topicos: int) -> tuple[list[lis
              Onde lista_de_topicos é uma lista de listas de IDs de notícias.
     """
     
-    # 1. Extrair e ordenar todas as arestas O(E log V)
+    # Extrair e ordenar todas as arestas O(E log V)
     # A função obter_todas_arestas retorna (distancia, u, v)
     arestas = grafo.obter_todas_arestas()
     
@@ -26,7 +26,7 @@ def executar_kruskal(grafo: GrafoAdjacencia, num_topicos: int) -> tuple[list[lis
     if not vertices:
         return [], []
 
-    # O Union-Find da Pessoa 4 pressupõe IDs inteiros de 0 a (tamanho - 1).
+    # O Union-Find pressupõe IDs inteiros de 0 a (tamanho - 1).
     # Criamos mapeamentos de/para caso os IDs das notícias não sejam contíguos ou comecem de 1.
     id_para_indice = {id_noticia: i for i, id_noticia in enumerate(vertices)}
     indice_para_id = {i: id_noticia for i, id_noticia in enumerate(vertices)}
@@ -42,19 +42,19 @@ def executar_kruskal(grafo: GrafoAdjacencia, num_topicos: int) -> tuple[list[lis
     # Para detectar o "Efeito Encadeamento" (nós que atuam como super hubs ou pontes)
     grau_mst = {id_noticia: 0 for id_noticia in vertices}
 
-    # 2. Percorrer a lista ordenada de arestas
+    # Percorrer a lista ordenada de arestas
     for distancia, u, v in arestas:
         idx_u = id_para_indice[u]
         idx_v = id_para_indice[v]
         
-        # O método union da Pessoa 4 já faz o "find" e só une se forem de grupos diferentes,
+        # O método union já faz o "find" e só une se forem de grupos diferentes,
         # retornando True se a união foi feita, e False se já pertenciam ao mesmo grupo (evita ciclos).
         if uf.union(idx_u, idx_v):
             mst_completa.append((distancia, u, v))
             grau_mst[u] += 1
             grau_mst[v] += 1
 
-    # Destaque de Ponto de Atenção: Efeito Encadeamento (Clusterização e Nós Ponte)
+    # Ponto de Atenção: Efeito Encadeamento (Clusterização e Nós Ponte)
     # Procuramos por nós que conectaram muitas outras notícias
     limite_grau = max(4, int(n_vertices * 0.15)) # Critério empírico: 15% dos nós ou no mínimo 4 arestas
     nos_ponte = [node for node, grau in grau_mst.items() if grau >= limite_grau]
@@ -67,8 +67,8 @@ def executar_kruskal(grafo: GrafoAdjacencia, num_topicos: int) -> tuple[list[lis
         print("RECOMENDAÇÃO: Avise a Pessoa 2 para ser mais rigorosa no 'Ponto de Corte' (diminuir limite_distancia) ou isole essas notícias.")
         print("="*60 + "\n")
 
-    # 3. Remover as arestas mais pesadas para formar os clusters
-    # Usamos o Union-Find da Pessoa 4 para ver quantos tópicos o grafo formou naturalmente
+    # Remover as arestas mais pesadas para formar os clusters
+    # Usamos o Union-Find para ver quantos tópicos o grafo formou naturalmente
     topicos_formados_naturalmente = uf.quantidade_de_topicos()
     
     arestas_a_remover = num_topicos - topicos_formados_naturalmente

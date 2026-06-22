@@ -4,16 +4,8 @@ from src.estruturas.grafo import GrafoAdjacencia
 from src.processamento.pln import processar_textos
 from src.algoritimos.Kruskal import executar_kruskal
 from src.estruturas.tabela_hash import TabelaHash
-
-# 1. Pessoa 5 lê o JSON
-# 2. Pessoa 2 limpa os textos e calcula as distâncias
-# 3. Pessoa 1 e 4 alimentam o Grafo
-# 4. Pessoa 3 roda o algoritmo
-
-
 import json
 import os
-# Importações corrigidas com os nomes reais das classes e arquivos
 from src.estruturas.grafo import GrafoAdjacencia
 from src.algoritimos.Kruskal import executar_kruskal
 
@@ -39,7 +31,7 @@ num_topicos_desejados = 3
 print(f"[3/4] Executando Kruskal (Union-Find) para formar {num_topicos_desejados} tópicos...")
 topicos, mst_cortada = executar_kruskal(grafo, num_topicos_desejados)
 
-# 5. Apresentação Analítica (Sua responsabilidade)
+# 5. Apresentação Analítica 
 print("\n" + "="*60)
 print("🎯 RESULTADO DO AGRUPAMENTO (COMUNIDADES ENCONTRADAS)")
 print("="*60)
@@ -49,7 +41,7 @@ for i, topico in enumerate(topicos):
     print(f"IDs: {sorted(topico)}")
 print("="*60 + "\n")
 
-# 6. Integração da Tabela Hash (Busca O(1) exigida na tarefa da Pessoa 4)
+# 6. Integração da Tabela Hash para busca O(1)
 print("[4/4] Alimentando Tabela Hash para busca O(1)...")
 tabela_noticias = TabelaHash()
 for nt in noticias:

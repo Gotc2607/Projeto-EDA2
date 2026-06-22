@@ -1,4 +1,3 @@
-# src/processamento/pln.py
 import string
 
 def limpar_texto(texto: str) -> set[str]:

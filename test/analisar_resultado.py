@@ -1,9 +1,6 @@
-# test/analisar_resultados.py
 import sys
 import os
 import json
-
-# Garante que o Python encontre a pasta src
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.estruturas.grafo import GrafoAdjacencia
@@ -23,7 +20,7 @@ def auditar_agrupamentos():
     
     topicos, _ = executar_kruskal(grafo, 3)
 
-    # Definição do Gabarito Baseado na Geração de Dados da Pessoa 5
+    # Definição do Gabarito Baseado na Geração de Dados (IDs 1-19: Esportes, 20-38: Economia, 39-57: Tecnologia, 58-60: Nós Ponte)
     gabarito = {
         "Esportes": set(range(1, 20)),
         "Economia": set(range(20, 39)),

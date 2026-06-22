@@ -40,7 +40,7 @@ class UnionFind:
         Retorna uma lista de listas, onde cada sublista é uma Editoria (Tópico) do portal.
         """
         topicos = {}
-        # Varre todas as notícias para ver quem é o "chefe" delas
+        # Varre todas as notícias para ver a qual raiz pertencem e agrupa por raiz
         for i in range(len(self.pai)):
             raiz = self.find(i)
             if raiz not in topicos:
