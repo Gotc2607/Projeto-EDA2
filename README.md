@@ -1,5 +1,45 @@
 # Projeto-EDA2
-Projeto da matéria de Estrutura de Dados 2
+O projeto Agrupamento de Notícias tem como objetivo organizar automaticamente um grande volume de textos em categorias ou editorias consistentes (como política, esportes ou economia), sem depender de rótulos prévios ou classificação humana.
+
+Para resolver esse problema, a solução combina técnicas básicas de Processamento de Linguagem Natural (PLN) com Teoria dos Grafos. Inicialmente, os textos das notícias são limpos e comparados matematicamente (via Similaridade de Jaccard) para identificar o nível de semelhança temática entre eles. Em seguida, o sistema modela essas relações criando um Grafo Esparso, onde cada notícia é um "nó" e a semelhança entre elas define as "arestas".
+
+O coração do projeto está na sua eficiência algorítmica: aplicamos o Algoritmo de Kruskal em conjunto com uma estrutura de dados Union-Find altamente otimizada (com compressão de caminho). Essa abordagem conecta as notícias mais parecidas e corta as conexões fracas — evitando o "efeito encadeamento" que mistura temas diferentes. O resultado final é a geração rápida e eficiente de clusters (ilhas de notícias sobre o mesmo assunto), sem sobrecarregar a memória do sistema.
+
+---
+
+## Como Executar o Projeto
+
+### Pré-requisitos
+* **Python 3.x** instalado na sua máquina.
+
+### Passo a Passo
+
+1. **Obtenha os ficheiros do projeto**
+   Faça o clone do repositório ou descompacte os ficheiros numa pasta local:
+   `bash
+   git clone <url-do-repositorio>
+   `
+
+2. **Verifique a massa de dados**
+   Certifique-se de que o ficheiro sintético com a base de notícias (`noticias.json`) esteja corretamente posicionado na pasta centralizada `data/`.
+
+3. **Execute o script principal**
+   Aceda ao terminal na raiz do projeto e execute o ficheiro principal localizado na pasta do núcleo do projeto, `src/` (ajuste o nome do ficheiro caso seja diferente de `main.py`):
+   `bash
+   python main.py
+   `
+   ou
+
+   `python3 main.py
+   `
+
+5. **Analise a Saída**
+   Aguarde a execução. A consola exibirá o progresso analítico das etapas:
+   * Processamento e limpeza dos textos (PLN).
+   * Cálculo das combinações, distâncias e montagem do Grafo.
+   * Aplicação do ponto de corte e execução do Kruskal com Union-Find.
+   * A saída final listará as comunidades encontradas e os respetivos IDs numéricos das notícias que pertencem a cada tópico gerado.
+
 
 ## Divisão de tarefas
 
