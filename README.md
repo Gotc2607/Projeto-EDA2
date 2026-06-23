@@ -71,33 +71,33 @@ O que precisa fazer na prática:
 
 ## Arquitetura do Projeto
 
-meu_projeto_grafos/
-│
-├── data/
-│   └── noticias.json          # (Massa de testes)
-│
-├── src/
-│   ├── __init__.py            # Torna a pasta src um pacote Python
-│   │
-│   ├── estruturas/            
-│   │   ├── __init__.py
-│   │   ├── grafo.py           # Classe Grafo 
-│   │   ├── union_find.py      # Classe Union-Find 
-│   │   └── tabela_hash.py     # Mapeamento de Títulos 
-│   │
-│   ├── processamento/        
-│   │   ├── __init__.py
-│   │   └── pln.py             # Limpeza de texto e cálculo de pesos
-│   │
-│   └── algoritmos/          
-│       ├── __init__.py
-│       └── kruskal.py         # Lógica do Kruskal e cortes de arestas
-│
-├── test/                    
-│   └── analisar_resultados.py  # Script que mede a qualidade dos agrupamentos
-│
-├── main.py                    # Onde o fluxo principal roda (Integração)
-└── README.md                  # Documentação do projeto para o GitHub
+    meu_projeto_grafos/
+    │
+    ├── data/
+    │   └── noticias.json          # (Massa de testes)
+    │
+    ├── src/
+    │   ├── __init__.py            # Torna a pasta src um pacote Python
+    │   │
+    │   ├── estruturas/            
+    │   │   ├── __init__.py
+    │   │   ├── grafo.py           # Classe Grafo 
+    │   │   ├── union_find.py      # Classe Union-Find 
+    │   │   └── tabela_hash.py     # Mapeamento de Títulos 
+    │   │
+    │   ├── processamento/        
+    │   │   ├── __init__.py
+    │   │   └── pln.py             # Limpeza de texto e cálculo de pesos
+    │   │
+    │   └── algoritmos/          
+    │       ├── __init__.py
+    │       └── kruskal.py         # Lógica do Kruskal e cortes de arestas
+    │
+    ├── test/                    
+    │   └── analisar_resultados.py  # Script que mede a qualidade dos agrupamentos
+    │
+    ├── main.py                    # Onde o fluxo principal roda (Integração)
+    └── README.md                  # Documentação do projeto para o GitHub
 
 ## Slides do projeto
 
